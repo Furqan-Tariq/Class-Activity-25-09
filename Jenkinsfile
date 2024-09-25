@@ -11,18 +11,29 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                // Install dependencies, upgrade pip if necessary
-                sh 'python -m pip install --upgrade pip'
-                sh 'pip install -r requirements.txt'
+                // Assuming you have a requirements.txt file for Python dependencies
+                bat 'pip install -r requirements.txt'
             }
         }
 
+
+
         stage('Run Tests') {
             steps {
-                // Run testfile.py and generate JUnit XML report
-                sh 'python -m unittest testfile.py > test-reports/results.xml'
+                // Run linting and formatting first, then run tests
+                bat '''
+                echo Running flake8 linter...
+                flake8 .  --ignore=E501
+
+                echo Running black for formatting...
+                black --check .
+
+                echo Running Python unit tests...
+                pytest testfile.py --disable-warnings
+                '''
             }
         }
+
     }
 
     post {
