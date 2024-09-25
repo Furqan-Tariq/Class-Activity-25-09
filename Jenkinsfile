@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Checkout code from GitHub, specifying the main branch
-                git branch: 'main', url: 'https://github.com/Furqan-Tariq/Class-Activity-25-09.git'
+                git 'https://github.com/Furqan-Tariq/Class-Activity-25-09.git'
             }
         }
 
@@ -19,8 +18,8 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Run tests using unittest
-                sh 'python -m unittest discover'
+                // Run tests and generate JUnit XML report
+                sh 'python -m unittest discover -s tests -p "*.py" > test-reports/results.xml'
             }
         }
     }
@@ -28,7 +27,7 @@ pipeline {
     post {
         always {
             // Archive the test reports
-            junit '**/test-reports/*.xml'
+            junit 'test-reports/*.xml'
         }
         success {
             echo 'Tests passed successfully!'
