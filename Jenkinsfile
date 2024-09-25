@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // Checkout code from GitHub
-                git 'https://github.com/Furqan-Tariq/Class-Activity-25-09.git'
+                // Checkout code from GitHub, specifying the main branch
+                git branch: 'main', url: 'https://github.com/Furqan-Tariq/Class-Activity-25-09.git'
             }
         }
 
@@ -24,7 +24,6 @@ pipeline {
             }
         }
     }
-
 
     post {
         always {
