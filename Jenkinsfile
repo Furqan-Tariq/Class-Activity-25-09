@@ -5,7 +5,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Checkout code from GitHub
-                git 'https://github.com/username/repository-name.git'
+                git 'https://github.com/Furqan-Tariq/Class-Activity-25-09.git'
             }
         }
 
