@@ -35,6 +35,7 @@ pipeline {
         }
         failure {
             echo 'Tests failed!'
+            echo 'Come on'
         }
     }
 }
