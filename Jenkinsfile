@@ -10,7 +10,7 @@ pipeline {
             steps {
                 retry(3) {
                     timeout(time: 2, unit: 'MINUTES') {
-                        git url: 'https://github.com/Furqan-Tariq/Class-Activity-25-09.git', branch: 'master'
+                        git url: 'https://github.com/Furqan-Tariq/Class-Activity-25-09.git', branch: 'main'
                     }
                 }
             }
